@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#07152f">
+<title>Mil estrelas e um só destino ✦</title>
+<style>
+:root{--night:#07152f;--night2:#0c2145;--panel:rgba(16,38,76,.82);--blue:#9dc8ff;--ice:#eaf3ff;--soft:#b8cce9;--line:rgba(174,207,255,.22);--gold:#ffe5a6}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:radial-gradient(ellipse at 50% 0%,#17386a 0%,#0b1d3d 38%,#050d20 100%);color:var(--ice);font-family:Georgia,'Times New Roman',serif;line-height:1.7;min-height:100vh;overflow-x:hidden}
+#sky{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:-1}
+.twinkle{position:absolute;color:#d9eaff;animation:twinkle var(--dur,3s) ease-in-out infinite alternate;opacity:.7}
+@keyframes twinkle{from{opacity:.2;transform:scale(.75)}to{opacity:1;transform:scale(1.18)}}
+@keyframes drift{0%{transform:translateY(0) rotate(0)}100%{transform:translateY(-16px) rotate(12deg)}}
+header{min-height:88vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:60px 22px 48px;position:relative}
+.eyebrow{font-family:Arial,sans-serif;letter-spacing:.25em;text-transform:uppercase;font-size:11px;color:var(--blue)}
+.moon{font-size:36px;color:var(--gold);margin-bottom:12px;animation:drift 4s ease-in-out infinite alternate}
+h1{font-size:clamp(36px,8vw,70px);font-weight:normal;line-height:1.08;margin:10px 0 18px;text-shadow:0 0 28px #8cbcff44}
+h1 em{color:var(--blue);font-weight:normal}
+header p{max-width:540px;color:#d1e0f7;font-size:clamp(16px,4vw,20px);margin:0 auto 25px}
+button,.button{font-family:Arial,sans-serif;font-size:14px;letter-spacing:.02em;border:1px solid #8cb8f0aa;background:#a9ccff;color:#08152d;padding:12px 19px;border-radius:999px;text-decoration:none;cursor:pointer;transition:.2s}
+button:hover,.button:hover{transform:translateY(-2px);box-shadow:0 7px 25px #7fb5ff30}
+main{width:min(760px,100%);margin:auto;padding:0 17px 55px}
+section{margin:25px 0 34px}
+.section-label{font-family:Arial,sans-serif;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--blue);text-align:center;margin-bottom:9px}
+h2{text-align:center;font-size:clamp(25px,5vw,34px);font-weight:normal;margin:0 0 10px}
+.intro{text-align:center;color:var(--soft);max-width:570px;margin:0 auto 23px}
+.panel{background:linear-gradient(145deg,rgba(19,45,87,.88),rgba(8,23,49,.91));border:1px solid var(--line);border-radius:22px;padding:clamp(20px,5vw,34px);box-shadow:0 18px 55px #02091840}
+.star-map{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin:24px auto 15px;max-width:500px}
+.star{background:transparent;border:1px solid transparent;color:var(--gold);padding:8px 0;font-size:clamp(27px,7vw,39px);border-radius:14px;line-height:1.2}
+.star.found{background:#d7e9ff18;border-color:#9dc8ff66;color:#fff1bd}
+#starNote{display:none;text-align:center;margin:18px auto 0;padding:16px;border-radius:14px;background:#07152f88;color:#e4efff;font-size:18px;max-width:530px}
+.counter{text-align:center;color:var(--soft);font:12px Arial,sans-serif}
+.letter{min-height:190px;display:flex;flex-direction:column;justify-content:center;text-align:center;margin:22px 0;padding:25px 20px;background:linear-gradient(150deg,#e9f2ff,#c8ddfa);color:#102447;border-radius:16px;box-shadow:inset 0 0 0 1px #fff8}
+.letter .number{font:11px Arial,sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#526c93}
+.letter h3{font-size:25px;font-weight:normal;margin:7px 0 12px}
+.letter p{font-size:18px;margin:0;white-space:pre-line}
+.controls{display:flex;justify-content:center;gap:10px;flex-wrap:wrap}
+.controls button.secondary{background:transparent;color:var(--ice);border-color:#91b6e588}
+.poem{font-size:clamp(17px,4vw,20px);text-align:center;white-space:pre-line;color:#e5efff;line-height:1.95}
+.poem em{color:var(--blue);font-style:normal}
+details{border-top:1px solid var(--line);padding:14px 0}
+details:last-child{border-bottom:1px solid var(--line)}
+summary{cursor:pointer;color:var(--blue);font-size:18px}
+details p{color:#d8e5fa;margin:12px 0 3px;white-space:pre-line}
+.final{text-align:center}
+.final .heart{font-size:32px;color:#a9ccff;animation:drift 3s ease-in-out infinite alternate}
+#lastReveal{display:none;color:#e4efff;font-size:19px;margin:20px auto 0;max-width:500px;white-space:pre-line}
+footer{text-align:center;color:#8ea8cd;font:12px Arial,sans-serif;padding:8px 20px 35px}
+@media(max-width:420px){.star-map{gap:5px}.panel{border-radius:18px}.star{padding:7px 0}}
+</style>
+</head>
+<body>
+<div id="sky" aria-hidden="true"></div>
+<header>
+  <div class="moon">☾ ✦</div>
+  <div class="eyebrow">um pequeno universo feito pra você</div>
+  <h1>Mil estrelas<br><em>e um só destino</em></h1>
+  <p>Ian, guardei algumas palavras aqui — daquelas que às vezes não consigo dizer de uma vez, então deixo o coração escrever devagar.</p>
+  <a class="button" href="#estrelas">entrar no nosso céu ↓</a>
+</header>
+<main>
+  <section id="estrelas">
+    <div class="section-label">01 · constelação secreta</div>
+    <h2>Encontre as estrelas ✦</h2>
+    <p class="intro">Cada estrelinha guarda uma frase. Pode escolher qualquer uma; o céu não tem uma ordem certa.</p>
+    <div class="panel">
+      <div class="star-map" id="starMap"></div>
+      <div class="counter" id="counter">0 de 10 estrelinhas encontradas</div>
+      <div id="starNote" role="status"></div>
+    </div>
+  </section>
+  <section id="cartinhas">
+    <div class="section-label">02 · palavras guardadas</div>
+    <h2>Cartinhas para você</h2>
+    <p class="intro">Algumas coisas ficam mais fáceis quando viram palavras.</p>
+    <div class="panel">
+      <div class="letter">
+        <div class="number" id="letterNumber">CARTINHA 01</div>
+        <h3 id="letterTitle">Pra quando o dia pesar</h3>
+        <p id="letterText">Espero que você lembre que não precisa dar conta de tudo sozinho. Até o céu fica escuro antes de amanhecer.</p>
+      </div>
+      <div class="controls">
+        <button class="secondary" id="prev">← Anterior</button>
+        <button id="next">Próxima →</button>
+      </div>
+    </div>
+  </section>
+  <section id="poema">
+    <div class="section-label">03 · um pedaço de mim</div>
+    <h2>O que as palavras não escondem</h2>
+    <div class="panel poem">Eu escrevo sobre você em todo lugar.
+Na escola, em casa, no parquinho,
+em um banco de shopping...
+
+E todas essas cartas
+são pra você.
+
+Eu não sei exatamente o que o futuro guarda pra nós,
+mas gosto de imaginar as possibilidades.
+Quero que a gente tenha tempo para crescer,
+se conhecer cada vez mais e descobrir, sem pressa,
+o que podemos ser um para o outro. ♡
+
+<em>Talvez algumas pessoas virem poesia</em>
+antes mesmo de saberem
+o tamanho do espaço que ocupam na gente. ✧</div>
+  </section>
+  <section>
+    <div class="section-label">04 · pequenos pedaços</div>
+    <h2>Abra quando quiser</h2>
+    <p class="intro">Toque nos títulos. São palavras pequenas, mas eu quis deixar cada uma aqui.</p>
+    <div class="panel">
+      <details><summary>✦ Se você estiver cansado</summary><p>Não precisa fingir que está tudo bem comigo. Você pode respirar, ficar quietinho e descansar. Não precisa merecer cuidado; você também merece nos dias difíceis.</p></details>
+      <details><summary>✦ Se esquecer o quanto é importante</summary><p>Talvez eu não saiba explicar tudo do jeito certo, mas fico feliz por ter cruzado o seu caminho. Tem encontros que deixam estrelinhas acesas na memória.</p></details>
+      <details><summary>✦ Sobre nós, sem pressa</summary><p>Eu não quero que a gente precise adivinhar o futuro. Quero que a gente cuide do presente, aprenda a se entender e veja, com calma, onde as nossas estrelas podem chegar.</p></details>
+    </div>
+  </section>
+  <section class="panel final">
+    <div class="heart">♡</div>
+    <h2>Uma última coisinha, Ian</h2>
+    <p class="intro">Tem uma mensagem escondida aqui, só esperando você abrir.</p>
+    <button id="reveal">abrir a última estrelinha ✦</button>
+    <div id="lastReveal">Se um dia a vida deixar a gente caminhar juntinho, espero que seja bonito, tranquilo e sincero. E, até lá, quero que você saiba que estas palavras foram feitas pensando em você. — Isa ♡</div>
+  </section>
+</main>
+<footer>escrito por Isa, entre sonhos, estrelas e tudo aquilo que ainda desejo viver contigo ✦</footer>
+<script>
+const sky=document.getElementById('sky');
+for(let i=0;i<72;i++){
+ const s=document.createElement('span');s.className='twinkle';s.textContent=Math.random()>.76?'✦':'·';
+ s.style.left=(Math.random()*100)+'%';s.style.top=(Math.random()*100)+'%';s.style.fontSize=(Math.random()*15+7)+'px';s.style.setProperty('--dur',(Math.random()*4+2)+'s');s.style.animationDelay=(Math.random()*4)+'s';sky.appendChild(s);
+}
+const starMessages=[
+"Às vezes, uma simples conversa com você já é suficiente pra deixar meu dia mais leve. ✦",
+"Você não precisa estar bem o tempo inteiro, Ian.",
+"Que a vida seja gentil com esse coração, até nos dias difíceis.",
+"Algumas pessoas viram lembrança boa antes mesmo de virar história.",
+"Se eu pudesse, guardava um pedacinho de céu pra você descansar.",
+"Eu escrevo porque tem sentimentos que não cabem numa conversa só.",
+"Que a gente aprenda a se entender sem precisar se machucar.",
+"Nem toda estrela precisa brilhar forte; continuar acesa já é bonito.",
+"Tem palavras minhas que sempre acabam encontrando o caminho até você.",
+"Obrigada por existir no mesmo universo que eu. — Isa ♡"
+];
+const starMap=document.getElementById('starMap'),starNote=document.getElementById('starNote'),found=new Set();
+const order=[4,0,8,2,6,1,9,3,7,5];
+order.forEach((messageIndex,i)=>{
+ const b=document.createElement('button');b.className='star';b.textContent='✧';b.setAttribute('aria-label','Estrelinha '+(i+1));
+ b.onclick=()=>{found.add(i);b.classList.add('found');b.textContent='✦';starNote.style.display='block';starNote.textContent=starMessages[messageIndex];document.getElementById('counter').textContent=found.size+' de 10 estrelinhas encontradas';if(found.size===10)starNote.textContent+=' Você encontrou todas. Que sorte a minha ter deixado essas palavras aqui. ♡';};
+ starMap.appendChild(b);
+});
+const letters=[
+["Pra quando o dia pesar","Espero que você lembre que não precisa dar conta de tudo sozinho. Até o céu fica escuro antes de amanhecer."],
+["Uma coisa que eu queria dizer","Às vezes, eu não sei organizar o que sinto. Então escrevo, apago, escrevo de novo… até as palavras parecerem um pouquinho com aquilo que mora em mim."],
+["Sobre a distância","Mesmo quando existem quilômetros entre duas pessoas, uma mensagem pode fazer o mundo parecer um pouco menor. Queria que você sentisse carinho em cada palavra daqui."],
+["Obrigada por existir","Obrigada por fazer parte da minha vida. Eu torço pela sua felicidade, pelos seus dias leves e por tudo aquilo que você ainda quer conquistar."],
+["As cartas que são suas","Eu escrevo sobre você em todo lugar. Na escola, em casa, no parquinho, em um banco de shopping… E todas essas cartas são pra você."],
+
+["Sem pressa","Eu não preciso que o futuro chegue hoje. Quero que a gente cresça, aprenda a conversar e cuide um do outro com mais calma. O resto, a gente descobre no caminho."]
+];
+let current=0;
+function showLetter(){document.getElementById('letterNumber').textContent='CARTINHA '+String(current+1).padStart(2,'0');document.getElementById('letterTitle').textContent=letters[current][0];document.getElementById('letterText').textContent=letters[current][1];document.getElementById('prev').disabled=current===0;document.getElementById('next').disabled=current===letters.length-1;document.getElementById('prev').style.opacity=current===0?.45:1;document.getElementById('next').style.opacity=current===letters.length-1?.45:1}
+document.getElementById('prev').onclick=()=>{if(current>0){current--;showLetter()}};
+document.getElementById('next').onclick=()=>{if(current<letters.length-1){current++;showLetter()}};
+showLetter();
+document.getElementById('reveal').onclick=()=>{const el=document.getElementById('lastReveal');el.style.display=el.style.display==='block'?'none':'block';document.getElementById('reveal').textContent=el.style.display==='block'?'fechar a mensagem ♡':'abrir a última estrelinha ✦'};
+</script>
+</body>
+</html>
